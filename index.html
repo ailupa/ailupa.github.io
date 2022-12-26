@@ -1,0 +1,431 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>地址发布—爱撸啪导航</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: PingFang SC-Medium, PingFang SC;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background-color: rgba(255, 124, 156, 0.5);
+        }
+
+        .container-bg {
+            position: absolute;
+            z-index: 0;
+            width: 100%;
+        }
+
+        .content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            min-height: 100vh;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .g-flex_wrap {
+            flex-wrap: wrap;
+        }
+
+        .g-flex_spb {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .g-flex_jcc {
+            display: flex;
+            justify-content: center;
+        }
+
+        .g-flex_aic {
+            display: flex;
+            align-items: center;
+        }
+
+        .g-flex_1 {
+            flex: 1;
+        }
+
+        .title {
+        display: block;
+        width: 90%;
+        max-width: 6rem;
+        margin: 0 auto;
+        padding: 0.5rem 0;
+        /*animation: shake 0.8s infinite ease-in-out;*/
+            animation: scaleDraw 2s infinite ease-in-out;
+
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            /*flex: 1;*/
+            width: 100%;
+            max-width: 1200px;
+            height: auto;
+            margin: 0 auto;
+            padding: 0 0.48rem 0.24rem;
+            box-sizing: border-box;
+            /*border-radius: 0.24rem 0.24rem 0 0;*/
+            border-radius: 0.24rem;
+            background-color: #fff;
+        }
+        @media screen and (max-width: 2000px) {
+            .title{
+                width: 66%;
+                padding: 0.54rem 0 0.3rem;
+            }
+            .box{
+                max-width: 800px;
+                padding: 0 0.3rem 0.14rem;
+            }
+        }
+        .box-title {
+            height: 0.66rem;
+        }
+
+        .box-btn {
+            position: relative;
+            padding: 0.13rem 0;
+            margin-right: 0.36rem;
+            text-align: center;
+            background: #fff;
+            opacity: 1;
+            border: 1px solid #000000;
+            border-radius: 4px;
+            -moz-box-shadow: 0.06rem 0.06rem 0px #fe6aa8;
+            -webkit-box-shadow: 0.06rem 0.06rem 0px #fe6aa8;
+            box-shadow: 0.06rem 0.06rem 0px #fe6aa8;
+            font-size: 0.26rem;
+            font-family: PingFang SC-Regular, PingFang SC;
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.8);
+            line-height: 0.3rem;
+        }
+
+        .box-btn a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .box-btn:last-child {
+            margin-right: 0;
+        }
+
+        .box-btn-type {
+            flex: 1;
+        }
+
+        .box-btn-type1 {
+            margin-right: 0;
+            margin-top: 0.62rem;
+            padding: 0.34rem 0.6rem 0.28rem;
+            -moz-box-shadow: 0.07rem 0.07rem 0px #000;
+            -webkit-box-shadow: 0.07rem 0.07rem 0px #000;
+            box-shadow: 0.07rem 0.07rem 0px #000;
+        }
+
+        .box-btn-type2 {
+            font-size: 0.2rem;
+            line-height: 0.23rem;
+            border-radius: 0.28rem;
+            -moz-box-shadow: 0px 0.08rem 0px #ffa9c1;
+            -webkit-box-shadow: 0px 0.08rem 0px #ffa9c1;
+            box-shadow: 0px 0.08rem 0px #ffa9c1;
+        }
+
+        .box-btn-extra {
+            position: absolute;
+            top: -0.25rem;
+            right: 0px;
+            width: 1.4rem;
+        }
+
+        .box-btn-tag {
+            position: absolute;
+            top: -0.36rem;
+            left: 0.32rem;
+            width: 1.8rem;
+            height: 0.72rem;
+            text-align: left;
+            background: url('static/picture/group38.png') 0 0/100% 100% no-repeat;
+        }
+        .box-btn-tag.url{
+            width: 4.3rem;
+        }
+        .box-btn-tag .tag-img {
+            width: 0.32rem;
+            height: 0.32rem;
+            margin-left: 0.1rem;
+            vertical-align: middle;
+        }
+
+        .box-btn-tag .tag-title {
+            font-size: 0.24rem;
+            line-height: 0.5rem;
+            font-weight: 500;
+        }
+
+        .box-btn-tip {
+            font-size: 0.21rem;
+            font-weight: 500;
+            color: rgba(18, 18, 18, 0.8);
+            line-height: 1.5;
+        }
+
+        .copyright {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            flex: 1;
+            margin-top: 0.24rem;
+            font-size: 0.18rem;
+            font-weight: 500;
+            color: #505050;
+            line-height: 0.16rem;
+            text-align: center;
+        }
+
+        .point {
+            color: #ff0000;
+        }
+
+        .point img {
+            width: 0.48rem;
+            height: 0.48rem;
+        }
+
+        .point img:first-of-type {
+            transform: rotateY(180deg);
+        }
+
+        @media screen and (min-width: 1920px) {
+            .box-btn {
+                font-size: 0.2rem;
+            }
+        }
+
+        @media screen and (max-width: 749px) {
+            .box-title {
+                height: 0.8rem;
+            }
+
+            .box-btn-type, .box-btn-type2 {
+                flex: 0 0 100%;
+                margin-top: 0.3rem;
+                margin-right: 0;
+            }
+
+            .box-btn-type:first-child, .box-btn-type2:first-of-type {
+                margin-top: 0;
+            }
+
+            .box-btn-type1 {
+                margin-top: 0.5rem;
+            }
+        }
+
+        @keyframes shake {
+            10% {
+                transform: translate(-0.06rem, 0.08rem) rotate(-1.5deg);
+            }
+            20% {
+                transform: translate(0.06rem, -0.09rem) rotate(2.5deg);
+            }
+            30% {
+                transform: translate(0.09rem, -0.07rem) rotate(-0.5deg);
+            }
+            40% {
+                transform: translate(0.06rem, 0.03rem) rotate(-1.5deg);
+            }
+            50% {
+                transform: translate(0.08rem, 0.01rem) rotate(-1.5deg);
+            }
+            60% {
+                transform: translate(0.06rem, 0.09rem) rotate(-1.5deg);
+            }
+            70% {
+                transform: translate(-0.02rem, -0.09rem) rotate(1.5deg);
+            }
+            80% {
+                transform: translate(0.06rem, 0.08rem) rotate(0.5deg);
+            }
+            90% {
+                transform: translate(0.02rem, 0.08rem) rotate(0.5deg);
+            }
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0);
+            }
+        }
+        @keyframes scaleDraw {  /*定义关键帧、scaleDrew是需要绑定到选择器的关键帧名称*/
+
+            0%{
+
+                transform: scale(1);  /*开始为原始大小*/
+
+            }
+
+            25%{
+
+                transform: scale(1.1); /*放大1.1倍*/
+
+            }
+
+            50%{
+
+                transform: scale(1);
+
+            }
+
+            75%{
+
+                transform: scale(1.1);
+
+            }
+
+        }
+        .downloadAppButton{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: none;
+            margin-top: 0;
+            padding: 0.1rem 0.3rem;
+            border-radius: 0.4rem;
+            -moz-box-shadow: 0.02rem 0.02rem 0px #FFF, 0.02rem 0.02rem 0px 1px black;
+            -webkit-box-shadow: 0.02rem 0.02rem 0px #fff, 0.02rem 0.02rem 0px 1px black;
+            box-shadow: 0.02rem 0.02rem 0px #fff, 0.02rem 0.02rem 0px 1px black;
+            background: #FB7299;
+            color: #FFF;
+            font-size: 0.16rem;
+            line-height: 0.25rem;
+            font-weight: 600;
+            font-family: PingFang SC-Regular, PingFang SC;
+            word-break: break-all;
+            text-align: center;
+            opacity: 1;
+            border: 1px solid #000000;
+            position: relative;
+        }
+        .downloadAppButton a{
+            text-decoration: none;
+            color: inherit;
+        }
+        .downloadAppButton a img{
+            width: 0.16rem;
+            height: 0.16rem;
+            vertical-align: middle;
+        }
+    </style>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="static/js/ef74ea540e9642848f0615b3a1d1f6f0.js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SY8NWLJGC4');
+</script>
+</head>
+<body>
+<div class="container">
+    <img class="container-bg" src="static/picture/slice14.png" alt=""/>
+    <div class="content">
+        <img class="title" src="static/picture/slice18.png" alt=""/>
+        <div class="box">
+            <div class="g-flex_spb g-flex_aic box-title">
+                <img
+                        src="static/picture/slice1.png"
+                        alt=""
+                        srcset=""
+                        style="width: 1.44rem"
+                />
+                <!--<img
+                        src="static/picture/slice4.png"
+                        alt=""
+                        srcset=""
+                        style="width: 0.26rem"
+                />-->
+                <div class="downloadAppButton">
+                    <a href="https://ailu.fun" target="_blank">
+                        <img src="static/picture/Slice18_2x.png" alt="" />
+                        下载APP
+                    </a>
+                </div>
+            </div>
+            <div class="g-flex_spb g-flex_aic g-flex_wrap">
+                <div class="box-btn box-btn-type">永久网址1<br />www.ailupa.com</div>
+            </div>
+            <div class="box-btn box-btn-type1 g-flex_spb g-flex_aic g-flex_wrap">
+                <div class="box-btn-tag">
+                    <img class="tag-img" src="static/picture/slice2.png" alt=""/>
+                    <span class="tag-title">最新网址</span>
+                </div>
+                <a href='https://ailu.fun' class="g-flex_1 box-btn box-btn-type2" >ailu.fun</a>
+				<a  href='https://ailupa.fun'  class="g-flex_1 box-btn box-btn-type2" >ailupa.fun</a>
+            </div>
+            <div class="box-btn box-btn-type1" style="background-color: #fffdf5;padding: 0.34rem 0.4rem 0.28rem;">
+                <div class="box-btn-tag">
+                    <img class="tag-img" src="static/picture/slice5.png" alt=""/>
+                    <span class="tag-title">温馨提示</span>
+                </div>
+                <img class="box-btn-extra" src="static/picture/slice9.png" alt=""/>
+                <p class="box-btn-tip">
+              联系 <b style="color:#ff3f84">官方邮箱，</b>  <b style="color:#ff3f84"></b>即可获取最新消息。
+            </p>
+                <p class="box-btn-tip">如果打不开此页面，<b>请您稍后再试</b>。</p>
+                <div class="point g-flex_aic g-flex_jcc">
+                    <img src="static/picture/finger.gif" alt=""/>
+                    请截图保存
+                    <img src="static/picture/finger.gif" alt=""/>
+                </div>
+            </div>
+            <p class="copyright"><b>官方邮箱：ailupa@proton.me</b></p>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    function setRem() {
+        // 默认使用100px作为基准大小
+        const edges = [600, 750, 820, 1050, 1440, 1920]
+        const baseSize = 100;
+        const vW = window.innerWidth; // 当前窗口的宽度
+        const idx = edges.findIndex(item => item - vW > 0);
+        const maxIdx = idx == -1 ? edges.length - 1 : idx == 0 ? idx : idx - 1;
+        const baseVal = baseSize / edges[maxIdx];
+        const rem = vW * baseVal; // 以默认比例值乘以当前窗口宽度,得到该宽度下的相应font-size值
+        document.documentElement.style.fontSize = rem + 'px';
+    }
+    function goDownload() {
+        window.open("http://");
+    }
+    // 初始化
+    setRem();
+    // 窗口大小变化时重置 rem
+    window.onresize = function () {
+        setRem();
+    };
+</script>
+
+
+
+
+</html>
